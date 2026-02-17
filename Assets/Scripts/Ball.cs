@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour {
     }
 
 
-    private void Launch() {
+    public void Launch() {
 
         currentSpeed = initialSpeed;
 
