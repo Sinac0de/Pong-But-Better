@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
 
-    [SerializeField] private float initialSpeed = 1.0f;
+    [SerializeField] private float initialSpeed = 10.0f;
     [SerializeField] private float speedIncrease = 0.5f;
 
     private Rigidbody2D rb;
@@ -34,6 +34,19 @@ public class Ball : MonoBehaviour {
         if (collision.collider.CompareTag("Paddle")) {
             currentSpeed += speedIncrease;
             rb.linearVelocity = rb.linearVelocity.normalized * currentSpeed;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+
+        if (collision.CompareTag("LeftGoal")) {
+            ScoreManager.Instance.PlayerScored();
+            ResetBall();
+        }
+
+        if (collision.CompareTag("RightGoal")) {
+            ScoreManager.Instance.AiScored();
+            ResetBall();
         }
     }
 
