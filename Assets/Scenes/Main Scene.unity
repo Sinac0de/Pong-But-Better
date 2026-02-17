@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79b91d3af29b89b4992ae6ab1d979132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Paddle
-  speed: 100
+  speed: 20
 --- !u!1 &2105474049
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,10 +670,18 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5380554522570479481, guid: d008f315ec0c6a54da2861a24b3f24f3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6738729650854204119, guid: d008f315ec0c6a54da2861a24b3f24f3, type: 3}
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 8084964148097281616, guid: d008f315ec0c6a54da2861a24b3f24f3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 203cdc0b6a52ebe44924b7093acc6b99, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
