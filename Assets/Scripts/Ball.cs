@@ -4,6 +4,7 @@ public class Ball : MonoBehaviour {
 
     [SerializeField] private float initialSpeed = 10.0f;
     [SerializeField] private float speedIncrease = 0.5f;
+    [SerializeField] private float impactScaleMultiplier = 1.5f;
 
     private Rigidbody2D rb;
     private float currentSpeed;
@@ -35,6 +36,10 @@ public class Ball : MonoBehaviour {
             currentSpeed += speedIncrease;
             rb.linearVelocity = rb.linearVelocity.normalized * currentSpeed;
         }
+
+        // impact on hit
+        transform.localScale *= impactScaleMultiplier;
+        Invoke(nameof(ResetScale), 0.05f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -55,5 +60,9 @@ public class Ball : MonoBehaviour {
         rb.linearVelocity = Vector2.zero;
         transform.position = Vector2.zero;
         Invoke(nameof(Launch), 1f);
+    }
+
+    private void ResetScale() {
+        transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
     }
 }
