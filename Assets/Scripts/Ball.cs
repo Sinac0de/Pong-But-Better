@@ -39,12 +39,12 @@ public class Ball : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
 
-        if (collision.CompareTag("LeftGoal")) {
+        if (collision.CompareTag("RightGoal")) {
             ScoreManager.Instance.PlayerScored();
             ResetBall();
         }
 
-        if (collision.CompareTag("RightGoal")) {
+        if (collision.CompareTag("LeftGoal")) {
             ScoreManager.Instance.AiScored();
             ResetBall();
         }
