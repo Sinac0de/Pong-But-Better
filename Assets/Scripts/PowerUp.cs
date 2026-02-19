@@ -11,7 +11,7 @@ public enum PowerUpType {
 public class PowerUp : MonoBehaviour {
 
 
-    private PowerUpType powerUpType;
+    [SerializeField] private PowerUpType powerUpType;
     [SerializeField] private float powerUpDuration = 5f;
 
 
@@ -19,7 +19,6 @@ public class PowerUp : MonoBehaviour {
         if (collision.CompareTag("Ball")) {
             GameManager.Instance.ActivatePowerUp(powerUpType, powerUpDuration);
             Destroy(gameObject);
-
         }
 
     }
