@@ -46,23 +46,29 @@ public class Ball : MonoBehaviour {
 
         if (collision.CompareTag("RightGoal")) {
             ScoreManager.Instance.PlayerScored();
-            ResetBall();
         }
 
         if (collision.CompareTag("LeftGoal")) {
             ScoreManager.Instance.AiScored();
-            ResetBall();
         }
     }
 
 
-    private void ResetBall() {
+    public void ResetBall() {
+        //stop the ball (zero velocity)
+        Stop();
+        ResetPosition();
+    }
+
+    public void Stop() {
         rb.linearVelocity = Vector2.zero;
-        transform.position = Vector2.zero;
-        Invoke(nameof(Launch), 1f);
     }
 
     private void ResetScale() {
         transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+    }
+
+    private void ResetPosition() {
+        transform.position = Vector2.zero;
     }
 }

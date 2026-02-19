@@ -28,6 +28,7 @@ public class PaddleAI : MonoBehaviour {
 
     private void Update() {
 
+
         float targetY = ballRb.transform.position.y;
 
         // hard mode prediction
