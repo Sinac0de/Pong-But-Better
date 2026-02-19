@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static PowerUp;
 
 public enum GameState {
     Start,
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour {
     public event Action<String> OnGameOver;
     [Header("References")]
     [SerializeField] private Ball ball;
+    [SerializeField] private Paddle playerPaddle;
+    [SerializeField] private PaddleAI aiPaddle;
+    [SerializeField] private Rigidbody2D ballRb;
     [SerializeField] private Camera mainCamera;
 
     [Header("Game Settings")]
@@ -63,6 +67,45 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
+    public void ActivatePowerUp(PowerUpType powerUpType, float powerUpDuration) {
+        StartCoroutine(HandlePowerUp(powerUpType, powerUpDuration));
+    }
+
+    private IEnumerator HandlePowerUp(PowerUpType powerUpType, float powerUpDuration) {
+        switch (powerUpType) {
+            case PowerUpType.BigPaddle:
+                playerPaddle.transform.localScale = new Vector3(1, 2, 1);
+                break;
+
+            case PowerUpType.FastBall:
+                ballRb.linearVelocity *= 1.5f;
+                break;
+
+            case PowerUpType.SlowAI:
+                aiPaddle.SetTemporarySpeedMultiplier(0.5f);
+                break;
+        }
+
+        yield return new WaitForSeconds(powerUpDuration);
+
+        // reset values
+        switch (powerUpType) {
+            case PowerUpType.BigPaddle:
+                playerPaddle.transform.localScale = Vector3.one;
+                break;
+
+            case PowerUpType.FastBall:
+                ballRb.linearVelocity *= 0.66f;
+                break;
+
+            case PowerUpType.SlowAI:
+                aiPaddle.ResetSpeed();
+                break;
+        }
+    }
+
+
     #region Game Flow
 
     private void StartGame() {
@@ -96,6 +139,7 @@ public class GameManager : MonoBehaviour {
             ball.Launch();
         }
     }
+
 
     public void ResetGame() {
         ScoreManager.Instance.ResetScores();

@@ -93,6 +93,39 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Mouse",
+                    "id": "dc1cd861-1579-4ae3-833a-07b0bff42dad",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "0af3b28f-b231-42c5-8a15-f80a9279384e",
+                    "path": "<Mouse>/delta/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5f875938-8cc8-4a1b-a72c-96e4d21d31a5",
+                    "path": "<Mouse>/delta/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "48c542be-9598-4502-bf2b-bb0d983032c7",
                     "path": "<Touchscreen>/position",

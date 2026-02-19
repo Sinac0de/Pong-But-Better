@@ -10,6 +10,7 @@ public class PaddleAI : MonoBehaviour {
 
     [SerializeField] private AIdifficulty difficulty;
     private float currentSpeed;
+    private float originalSpeed;
 
     private void Start() {
 
@@ -24,6 +25,8 @@ public class PaddleAI : MonoBehaviour {
                 currentSpeed = hardSpeed;
                 break;
         }
+
+        originalSpeed = currentSpeed;
     }
 
     private void Update() {
@@ -54,6 +57,15 @@ public class PaddleAI : MonoBehaviour {
         transform.position = pos;
 
     }
+
+    public void SetTemporarySpeedMultiplier(float multiplier) {
+        currentSpeed *= multiplier;
+    }
+
+    public void ResetSpeed() {
+        currentSpeed = originalSpeed;
+    }
+
 
 
 }
