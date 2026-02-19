@@ -60,9 +60,11 @@ public class GameManager : MonoBehaviour {
                 break;
             case GameState.PointScored:
                 // Wait for the point scored coroutine to finish
+                SoundManager.Instance.PlayScore();
                 break;
             case GameState.GameOver:
                 Time.timeScale = 0f; // Pause the game
+                SoundManager.Instance.PlayWin();
                 break;
         }
     }
@@ -75,7 +77,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator HandlePowerUp(PowerUpType powerUpType, float powerUpDuration) {
         switch (powerUpType) {
             case PowerUpType.BigPaddle:
-                playerPaddle.transform.localScale = new Vector3(1, 2, 1);
+                playerPaddle.transform.localScale = new Vector3(1f, 1, 1);
                 break;
 
             case PowerUpType.FastBall:
@@ -92,7 +94,7 @@ public class GameManager : MonoBehaviour {
         // reset values
         switch (powerUpType) {
             case PowerUpType.BigPaddle:
-                playerPaddle.transform.localScale = Vector3.one;
+                playerPaddle.transform.localScale = new Vector3(0.5f, 0.5f, 1);
                 break;
 
             case PowerUpType.FastBall:

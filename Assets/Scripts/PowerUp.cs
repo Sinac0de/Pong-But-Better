@@ -18,6 +18,7 @@ public class PowerUp : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Ball")) {
             GameManager.Instance.ActivatePowerUp(powerUpType, powerUpDuration);
+            SoundManager.Instance.PlayPowerUp();
             Destroy(gameObject);
         }
 

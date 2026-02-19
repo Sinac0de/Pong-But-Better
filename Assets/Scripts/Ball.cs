@@ -35,6 +35,11 @@ public class Ball : MonoBehaviour {
         if (collision.collider.CompareTag("Paddle")) {
             currentSpeed += speedIncrease;
             rb.linearVelocity = rb.linearVelocity.normalized * currentSpeed;
+            SoundManager.Instance.PlayPaddleHit();
+        }
+
+        if (collision.collider.CompareTag("Wall")) {
+            SoundManager.Instance.PlayWallHit();
         }
 
         // impact on hit
