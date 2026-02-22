@@ -38,13 +38,16 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void Start() {
+    private void Start() { 
         // save the initial camera position
         originalCamPos = mainCamera.transform.position;
 
         // start the game
         currentState = GameState.Start;
         StartGame();
+
+        // play background music
+        MusicManager.Instance.PlayGameplayMusic();
 
         // subscribe to the Score events
         ScoreManager.Instance.OnPlayerScored += () => StartCoroutine(HandlePoint(true));
