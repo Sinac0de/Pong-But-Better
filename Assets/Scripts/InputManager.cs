@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour {
     public static InputManager Instance { get; private set; }
+
+    public event Action OnPauseAction;
 
     private GameInputActions inputActions;
 
@@ -34,6 +37,10 @@ public class InputManager : MonoBehaviour {
 
         inputActions.GamePlay.TouchPosition.performed += ctx => {
             touchPosition = ctx.ReadValue<Vector2>();
+        };
+
+        inputActions.GamePlay.Pause.performed += ctx => {
+            OnPauseAction.Invoke();
         };
     }
 

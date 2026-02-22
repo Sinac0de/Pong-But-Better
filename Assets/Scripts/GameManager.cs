@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using static PowerUp;
+using UnityEngine.SceneManagement;
 
 public enum GameState {
     Start,
     Playing,
+    Paused,
     PointScored,
     GameOver
 }
@@ -52,9 +53,11 @@ public class GameManager : MonoBehaviour {
         // subscribe to the Score events
         ScoreManager.Instance.OnPlayerScored += () => StartCoroutine(HandlePoint(true));
         ScoreManager.Instance.OnAIScored += () => StartCoroutine(HandlePoint(false));
+
     }
 
     private void Update() {
+        
         switch (currentState) {
             case GameState.Start:
                 break;
@@ -145,6 +148,21 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void PauseGame() {
+        currentState = GameState.Paused;
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame() {
+        currentState = GameState.Playing;
+        Time.timeScale = 1f;
+    }
+
+    public void GoToMainMenu() {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
 
     public void ResetGame() {
         ScoreManager.Instance.ResetScores();
@@ -182,4 +200,5 @@ public class GameManager : MonoBehaviour {
     public GameState GetCurrentGameState() {
         return currentState;
     }
+
 }
