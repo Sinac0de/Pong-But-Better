@@ -8,19 +8,20 @@ public class PaddleAI : MonoBehaviour {
 
     [SerializeField] private Rigidbody2D ballRb;
 
+    [SerializeField] private AIdifficulty difficulty;
     private float currentSpeed;
     private float originalSpeed;
 
     private void Start() {
 
-        switch (GameSettings.SelectedDifficulty) {
-            case Difficulty.Easy:
+        switch (difficulty) {
+            case AIdifficulty.Easy:
                 currentSpeed = easySpeed;
                 break;
-            case Difficulty.Medium:
+            case AIdifficulty.Medium:
                 currentSpeed = mediumSpeed;
                 break;
-            case Difficulty.Hard:
+            case AIdifficulty.Hard:
                 currentSpeed = hardSpeed;
                 break;
         }
@@ -34,7 +35,7 @@ public class PaddleAI : MonoBehaviour {
         float targetY = ballRb.transform.position.y;
 
         // hard mode prediction
-        if (GameSettings.SelectedDifficulty == Difficulty.Hard) {
+        if (difficulty == AIdifficulty.Hard) {
             targetY += ballRb.linearVelocityY * 0.2f;
         }
 
